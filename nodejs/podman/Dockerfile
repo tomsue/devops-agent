@@ -1,4 +1,4 @@
-FROM kubespheredev/builder-base:v3.1.0-podman
+FROM kubespheredev/builder-base:v3.3.1-podman
 
 ENV NODE_VERSION 14.17.6
 
@@ -35,7 +35,9 @@ RUN npm -g config set user root
 RUN npm i -g watch-cli vsce typescript
 
 # Yarn
-ENV YARN_VERSION 1.16.0
+#ENV YARN_VERSION 1.16.0
+ENV YARN_VERSION 1.22.19
+
 RUN curl -f -L -o /tmp/yarn.tgz https://github.com/yarnpkg/yarn/releases/download/v${YARN_VERSION}/yarn-v${YARN_VERSION}.tar.gz && \
 	tar xf /tmp/yarn.tgz && \
 	mv yarn-v${YARN_VERSION} /opt/yarn && \
