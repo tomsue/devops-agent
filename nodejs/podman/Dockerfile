@@ -1,6 +1,6 @@
 FROM kubespheredev/builder-base:v3.1.0-podman
 
-ENV NODE_VERSION 10.16.3
+ENV NODE_VERSION 14.17.6
 
 RUN ARCH= && uArch="$(uname -m)" \
   && case "${uArch##*-}" in \
