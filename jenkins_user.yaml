@@ -148,6 +148,14 @@ jenkins:
                 securityContext:
                   fsGroup: 1000
 
+
+          - name: "nodejs14"
+            label: "nodejs nodejs14"
+            inheritFrom: "nodejs"
+            containers:
+              - name: "nodejs"
+                image: "tomsue123/builder-nodejs:14.17.6"
+
           - name: "maven"
             namespace: "kubesphere-devops-worker"
             label: "maven"
