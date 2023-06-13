@@ -1,4 +1,5 @@
 FROM arm64v8/centos:7
+
 ADD daemon.json /etc/docker/daemon.json
 ADD CentOS-Base7.repo /etc/yum.repos.d/CentOS-Base.repo
 
@@ -26,16 +27,13 @@ RUN yum install -y epel-release ca-certificates && \
   perl-devel \
   zlib-devel \
   python-pip \
-  java-1.8.0-openjdk  \
+  java-1.8.0-openjdk \
   centos-release-scl  \
-  deltarpm \
   devtoolset-7-gcc* && \
-  yum -y clean all --enablerepo='*' && \
+  yum -y clean all --enablerepo='*'
 
 RUN yum update -y && yum install -y git && \
     git version
-
-
 
 # Set the locale(en_US.UTF-8)
 ENV LANG en_US.UTF-8

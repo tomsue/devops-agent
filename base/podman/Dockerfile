@@ -2,7 +2,6 @@ FROM arm64v8/centos:7
 
 ADD daemon.json /etc/docker/daemon.json
 ADD CentOS-Base7.repo /etc/yum.repos.d/CentOS-Base.repo
-RUN ls /etc/yum.repos.d/
 
 RUN yum clean all
 RUN yum makecache
