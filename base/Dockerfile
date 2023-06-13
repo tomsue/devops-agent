@@ -1,4 +1,12 @@
-FROM centos:7
+FROM arm64v8/centos:7
+ADD daemon.json /etc/docker/daemon.json
+ADD CentOS-Base7.repo /etc/yum.repos.d/CentOS-Base.repo
+
+RUN yum clean all
+RUN yum makecache
+RUN yum update -y && yum install -y epel-release
+
+RUN yum provides '*/applydeltarpm' && yum install -y deltarpm
 
 # utils
 RUN yum install -y epel-release ca-certificates && \
@@ -18,19 +26,13 @@ RUN yum install -y epel-release ca-certificates && \
   perl-devel \
   zlib-devel \
   python-pip \
-  java-1.8.0-openjdk && \
-  yum -y clean all --enablerepo='*'
+  java-1.8.0-openjdk  \
+  centos-release-scl  \
+  deltarpm \
+  devtoolset-7-gcc* && \
+  yum -y clean all --enablerepo='*' && \
 
-RUN wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.39.2.tar.gz && \
-    tar zxvf git-2.39.2.tar.gz --no-same-owner && \
-    cd git-2.39.2 && \
-    make configure && \
-    ./configure prefix=/usr/local/git/ && \
-    make && \
-    make install && \
-    mv /usr/local/git/bin/git /usr/bin/ && \
-    cd ..&& \
-    rm -rf git-2.39.2.tar.gz git-2.39.2 && \
+RUN yum update -y && yum install -y git && \
     git version
 
 
