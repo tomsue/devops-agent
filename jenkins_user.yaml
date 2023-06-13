@@ -155,7 +155,8 @@ jenkins:
             containers:
               - name: "nodejs"
                 image: "tomsue123/builder-nodejs:14.17.6"
-
+              - name: "git"
+                image: "bitnami/git:2.39.2"
           - name: "maven"
             namespace: "kubesphere-devops-worker"
             label: "maven"
