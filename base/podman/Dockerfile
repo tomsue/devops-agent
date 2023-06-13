@@ -21,16 +21,16 @@ RUN yum install -y epel-release ca-certificates && \
   java-1.8.0-openjdk && \
   yum -y clean all --enablerepo='*'
 
-RUN wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz && \
-    tar zxvf git-2.9.5.tar.gz --no-same-owner && \
-    cd git-2.9.5 && \
+RUN wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.39.3.tar.gz && \
+    tar zxvf git-2.39.3.tar.gz --no-same-owner && \
+    cd git-2.39.3 && \
     make configure && \
     ./configure prefix=/usr/local/git/ && \
     make && \
     make install && \
     mv /usr/local/git/bin/git /usr/bin/ && \
     cd .. && \
-    rm -rf git-2.9.5.tar.gz git-2.9.5 && \
+    rm -rf git-2.39.3.tar.gz git-2.39.3 && \
     git version
 
 # Set the locale(en_US.UTF-8)
