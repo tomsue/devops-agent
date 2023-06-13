@@ -41,7 +41,7 @@ ENV LC_ALL en_US.UTF-8
 # USER jenkins
 WORKDIR /home/jenkins
 
-ENV SONAR_SCANNER_VERSION 3.3.0.1492
+ENV SONAR_SCANNER_VERSION 4.8.0.2856
 
 RUN curl -o sonar_scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${SONAR_SCANNER_VERSION}-linux.zip && \
     unzip sonar_scanner.zip && rm sonar_scanner.zip \
