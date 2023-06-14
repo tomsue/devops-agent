@@ -5,7 +5,7 @@ ADD CentOS-Base7.repo /etc/yum.repos.d/CentOS-Base.repo
 
 RUN yum clean all
 RUN yum makecache
-RUN yum update -y && yum install -y epel-release
+RUN yum update -y
 
 RUN yum provides '*/applydeltarpm' && yum install -y deltarpm
 
