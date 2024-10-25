@@ -1,7 +1,14 @@
 FROM arm64v8/centos:7
 
 ADD daemon.json /etc/docker/daemon.json
-ADD CentOS-Base7.repo /etc/yum.repos.d/CentOS-Base.repo
+COPY Centos-altarch-7.repo /etc/yum.repos.d/CentOS-Base.repo
+RUN yum install wget -y
+#RUN wget https://mirrors.aliyun.com/repo/Centos-altarch-7.repo -O /etc/yum.repos.d/CentOS-Base.repo
+
+
+#RUN wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-altarch-7.repo
+RUN yum clean all
+RUN yum makecache
 
 RUN yum clean all
 RUN yum makecache

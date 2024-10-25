@@ -5,7 +5,7 @@
 # geographically close to the client.  You should use this for CentOS updates
 # unless you are manually picking other mirrors.
 #
-# If the mirrorlist= does not work for you, as a fall back you can try the 
+# If the mirrorlist= does not work for you, as a fall back you can try the
 # remarked out baseurl= line instead.
 #
 #
@@ -16,7 +16,7 @@ baseurl=http://mirrors.aliyun.com/centos-altarch/$releasever/os/$basearch/
 gpgcheck=0
 gpgkey=http://mirrors.aliyun.com/centos-altarch/7/os/$basearch/RPM-GPG-KEY-CentOS-7
 
-#released updates 
+#released updates
 [updates]
 name=CentOS-$releasever - Updates
 baseurl=http://mirrors.aliyun.com/centos-altarch/$releasever/updates/$basearch/

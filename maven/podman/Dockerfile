@@ -2,10 +2,10 @@ FROM kubespheredev/builder-base:v3.1.0-podman
 
 ARG JDK_VERSION 1.8.0
 ARG JDK_HOME /usr/lib/jvm/java-${JDK_VERSION}-openjdk
-
 # java
 ENV JAVA_VERSION $JDK_VERSION
 
+#RUN  yum clean all &&     yum makecache  &&  yum update
 RUN if [ "x${JAVA_VERSION}" = "x17" ]; then \
       ARCH= && uArch="$(uname -m)" \
         && case "${uArch##*-}" in \
@@ -16,7 +16,7 @@ RUN if [ "x${JAVA_VERSION}" = "x17" ]; then \
       && wget https://download.oracle.com/java/${JAVA_VERSION}/latest/jdk-${JAVA_VERSION}_linux-${ARCH}_bin.rpm \
       && rpm -ivh jdk-${JAVA_VERSION}_linux-${ARCH}_bin.rpm; \
     else \
-      yum install -y java-${JAVA_VERSION}-openjdk-devel java-${JAVA_VERSION}-openjdk-devel.i686; \
+      yum install -y java-${JAVA_VERSION}-openjdk-devel; \
     fi
 # maven
 ENV MAVEN_VERSION 3.5.3
