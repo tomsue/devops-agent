@@ -10,7 +10,7 @@
         "https://docker.mirrors.ustc.edu.cn",
         "https://mirror.ccs.tencentyun.com",
         "https://registry.cn-hangzhou.aliyuncs.com",
-        "https://registry.docker-cn.com",
-        "http://hub-mirror.c.163.com"
+        "https://docker.m.daocloud.io",
+        "https://hub-mirror.c.163.com"
     ]
 }

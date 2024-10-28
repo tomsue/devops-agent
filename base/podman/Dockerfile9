@@ -1,4 +1,9 @@
 FROM quay.io/centos/centos:stream9
+# 切换到 root 用户执行需要 root 权限的操作
+USER root
+RUN yum install -y sudo
+ADD daemon.json /etc/docker/daemon.json
+
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
@@ -44,4 +49,8 @@ RUN yum -y install podman fuse-overlayfs && \
     ln -s /usr/bin/podman /usr/bin/docker && \
     yum -y clean all --enablerepo='*'
 
+COPY storage.conf /etc/containers/storage.conf
+COPY containers.conf /etc/containers/containers.conf
+
+VOLUME /var/lib/containers
 CMD ["podman", "info"]
