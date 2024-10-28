@@ -4,12 +4,10 @@ ARG JDK_VERSION=1.8.0
 ARG JDK_HOME=/usr/lib/jvm/java-${JDK_VERSION}-openjdk
 
 # java
-ENV JAVA_VERSION =${JDK_VERSION}
-ENV JAVA_HOME =${JDK_HOME}
-ENV M2_HOME = /opt/apache-maven-3.5.3
-ENV MAVEN_VERSION = 3.5.3
-ENV ANT_VERSION = 1.10.7
-ENV ANT_HOME = /opt/ant
+ENV JAVA_VERSION  ${JDK_VERSION}
+ENV JAVA_HOME  ${JDK_HOME}
+ENV M2_HOME  /opt/apache-maven-3.5.3
+
 
 
 #RUN  yum clean all &&     yum makecache  &&  yum update
@@ -21,18 +19,19 @@ RUN if [ "x${JAVA_VERSION}" = "x17" ]; then \
           *) echo "unsupported architecture"; exit 1 ;; \
         esac \
     else \
-      yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel \
+      yum install -y java-1.8.0-openjdk java-1.8.0-openjdk-devel; \
     fi
 # maven
+ENV MAVEN_VERSION  3.5.3
 RUN curl -f -L https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar -C /opt -xzv
 ENV M2_HOME /opt/apache-maven-$MAVEN_VERSION
-ENV JAVA_HOME $JDK_HOME
 ENV maven.home $M2_HOME
 ENV M2 $M2_HOME/bin
-ENV PATH $M2:$PATH:JAVA_HOME/bin
+ENV PATH $M2:$PATH:$JAVA_HOME/bin
 
 # ant
-ENV ANT_VERSION 1.10.7
+ENV ANT_VERSION  1.10.7
+ENV ANT_HOME = /opt/ant
 RUN cd && \
     wget -q https://archive.apache.org/dist/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
     tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
@@ -47,4 +46,5 @@ RUN ls /usr/lib/jvm
 
 
 RUN ls $JAVA_HOME
+RUN podman info
 CMD ["mvn","-version"]
